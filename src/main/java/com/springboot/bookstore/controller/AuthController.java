@@ -3,6 +3,8 @@ package com.springboot.bookstore.controller;
 import com.springboot.bookstore.domain.model.Usuario;
 import com.springboot.bookstore.dto.auth.LoginRequestDTO;
 import com.springboot.bookstore.dto.auth.LoginResponseDTO;
+import com.springboot.bookstore.dto.auth.RegisterRequestDTO;
+import com.springboot.bookstore.dto.auth.RegisterResponseDTO;
 import com.springboot.bookstore.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,15 +21,15 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(
-        @RequestBody @Valid LoginRequestDTO loginRequest
-    ) {
-        return ResponseEntity.ok(authService.login(loginRequest));
+    @PostMapping("/register")
+    public ResponseEntity<RegisterResponseDTO> register(@Valid @RequestBody RegisterRequestDTO registerRequest) {
+        RegisterResponseDTO response = authService.register(registerRequest);
+        return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<Usuario> register(@RequestBody @Valid Usuario usuario) {
-        return ResponseEntity.ok(authService.register(usuario));
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequest) {
+        LoginResponseDTO response = authService.login(loginRequest);
+        return ResponseEntity.ok(response);
     }
 }

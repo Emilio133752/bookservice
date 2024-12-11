@@ -16,6 +16,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "usuarios")
+
 public class Usuario implements UserDetails {
 
     @Id
@@ -34,12 +35,13 @@ public class Usuario implements UserDetails {
     @NotBlank(message = "Email é obrigatório")
     private String email;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // Importante: use STRING em vez do padrão ORDINAL
     private Role role;
 
+    @Column(name = "role", columnDefinition = "ENUM('USER', 'ADMIN')")
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
 
     @Override

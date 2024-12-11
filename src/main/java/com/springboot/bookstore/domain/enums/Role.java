@@ -1,6 +1,6 @@
 package com.springboot.bookstore.domain.enums;
 
 public enum Role {
-    ROLE_USER,
-    ROLE_ADMIN
+    USER,
+    ADMIN
 }

@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginResponseDTO {
-    private String token;
+public class RegisterResponseDTO {
+    private Long id;
     private String username;
-    private Role role;
+    private String token;
+    private Role role = Role.USER;  // Altere para Role
 }
